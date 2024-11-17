@@ -1,17 +1,16 @@
 from typing import Union
 from fastapi import FastAPI
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
 
 load_dotenv()
-key = os.getenv("FAKE_VALUE")
 
+key = os.getenv("FAKE_VALUE")
 app = FastAPI()
 
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
+async def main():
+    return {"message": key}
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Union[str, None] = None):
